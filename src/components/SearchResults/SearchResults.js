@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
+import Movie from '../Movie/Movie';
 import './SearchResults.css'
 
-export default function SearchResults({ title, results, button }) {
-    
-    const movies = results.map(movie =>
-        <li key={movie}><span>{movie}</span><input type='submit' value={button}/></li>
+export default function SearchResults({ title, results, button, nominations, nominate }) {
+
+    let movies = ''
+
+    console.log(results)
+
+    if (results && results.length > 0) {
+        movies = results.map(movie =>
+           <Movie key={movie.imdbID} movie={movie} button={button} nominate={nominate} /> 
         )
+    } 
 
     return (
         <div className='results-card'>

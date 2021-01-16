@@ -1,0 +1,12 @@
+.movie{
+    margin: 1rem;
+}
+
+.submit-button{
+    margin-left: 0.5rem;
+    padding: 0.2rem;
+}
+
+.submit-button.clicked{
+    opacity: 0.5;
+}

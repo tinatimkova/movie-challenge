@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import './Search.css'
+import axios from 'axios';
 
-function Search({ searchResults, getResults }) {
-    const [text, setText] = useState('')
+function Search({ getResults, text, setText }) {
+
+    const fetchSearchResults = (text) => {
+    return axios({
+        method: 'GET',
+        url: `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${text}&r=json&type=movie`
+        })
+      }
 
     const handleChange = (e) => {
         setText(e.target.value)
 
-        searchResults(text)
-        // .then(res => {res.Response && getResults(res.data.Search)})
+        fetchSearchResults(text)
+            // .then(res => console.log(res))
+            .then(res => {res.data.Response === "True" && getResults(res.data.Search)})
     }
+
 
     return (
         <>
@@ -18,7 +27,7 @@ function Search({ searchResults, getResults }) {
          <div className='search-bar'>
              <SearchIcon className='search-icon'/>
              <input className='search-field' type='text' autoFocus="autofocus" placeholder='Search Movies...' value={text} onChange={handleChange} />
-        </div> 
+        </div>
         </>
     )
 }

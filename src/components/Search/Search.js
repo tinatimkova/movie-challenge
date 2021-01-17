@@ -4,11 +4,19 @@ import './Search.css'
 import axios from 'axios';
 
 function Search({ getResults, text, setText }) {
+    
+    let API_KEY;
+
+    if (process.env.NODE_ENV !== production) {
+        API_KEY = process.env.REACT_APP_API_KEY;
+    } else {
+        API_KEY = process.env.API_KEY
+    }
 
     const fetchSearchResults = (text) => {
     return axios({
         method: 'GET',
-        url: `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${text}&r=json&type=movie`
+        url: `http://www.omdbapi.com/?apikey=${API_KEY}&s=${text}&r=json&type=movie`
         })
       }
 

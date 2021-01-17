@@ -10,7 +10,7 @@ function Search({ getResults, text, setText }) {
     if (process.env.NODE_ENV !== 'production') {
         API_KEY = process.env.REACT_APP_API_KEY;
     } else {
-        API_KEY = process.env.API_KEY
+        API_KEY = secrets.API_KEY
     }
 
     const fetchSearchResults = (text) => {

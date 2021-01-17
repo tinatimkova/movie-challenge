@@ -2,20 +2,29 @@ import { Fragment, useState } from 'react';
 import './App.css';
 import Search from './components/Search/Search';
 import SearchResults from './components/SearchResults/SearchResults';
+import Nominations from './components/Nominations/Nominations';
 
 function App() {
 
   const [results, setResults] = useState(null)
   const [nominations, setNominations] = useState([])
   const [text, setText] = useState('')
+  
+  console.log(nominations)
+  console.log(results)
 
-  const updateNominations = (clicked, movie) => {
-    if (clicked) {
-      setNominations(prevState => [...prevState, movie])
-    } else {
-      console.log('you do something wrong again, baby')
-    }
+  const addToNominations = (movie) => {
+    if (nominations.length < 5) {
+      setNominations(nominations.concat(movie))
   }
+}
+
+  const removeFromNominations = (movieId) => {
+    let newArray = nominations.filter(nomination => nomination.imdbID !== movieId)
+    setNominations(newArray)
+  }
+
+  console.log(nominations)
 
   return (
     <Fragment>
@@ -29,9 +38,14 @@ function App() {
       </div>
       </header>
       <section>
-        <SearchResults title={`Results for '${text}'`} results={results} nominate={updateNominations} button={'Nominate'} />
-        <SearchResults title={'Nominations'} results={nominations} button={'Remove'}/>
-      </section>
+        <SearchResults 
+          title={`Results for '${text}'`}
+          results={results}
+          nominations={nominations}
+          addToNominations={addToNominations}
+          />
+        <Nominations title={'Nominations'} nominations={nominations} removeFromNominations={removeFromNominations} />
+      </section> 
     </Fragment>
   );
 }

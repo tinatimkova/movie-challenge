@@ -2,15 +2,19 @@ import React from 'react';
 import Movie from '../Movie/Movie';
 import './SearchResults.css'
 
-export default function SearchResults({ title, results, button, nominations, nominate }) {
+export default function SearchResults({ title, results, nominations, addToNominations }) {
 
     let movies = ''
 
-    console.log(results)
-
     if (results && results.length > 0) {
-        movies = results.map(movie =>
-           <Movie key={movie.imdbID} movie={movie} button={button} nominate={nominate} /> 
+        movies = results.map((movie, index) =>
+           <Movie
+           key={index}
+           movie={movie}
+           nominations={nominations}
+           addToNominations={addToNominations}
+           button={'Nominate'}
+           /> 
         )
     } 
 

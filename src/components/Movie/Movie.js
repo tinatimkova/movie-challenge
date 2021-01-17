@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Movie.css'
 
-export default function Movie({ movie, button, addToNominations, nominations, removeFromNominations }) {
+export default function Movie({ movie, button, setNominations, nominations }) {
 
     const handleClick = () => {
         if (button==='Remove') {
-            return removeFromNominations(movie.imdbID)
-        } else if (button==='Nominate') {
-            return addToNominations(movie)
+            let newArray = nominations.filter(nomination => nomination.imdbID !== movie.imdbID)
+            return setNominations(newArray)
+        } else if (button==='Nominate' && nominations.length < 5) {
+            return setNominations(nominations.concat(movie))
         }
     }
 
@@ -18,7 +19,8 @@ export default function Movie({ movie, button, addToNominations, nominations, re
             className={'submit-button'}
             value={button} 
             onClick={handleClick}
-            disabled={(nominations.length >=5 && button==='Nominate') ? 'disabled' : ''} />
+            disabled={(nominations.findIndex(nomination => nomination.imdbID === movie.imdbID) !== -1 && button==='Nominate')
+            || (nominations.length >=5 && button==='Nominate') ? 'disabled' : ''} />
         </li>
     )
 }

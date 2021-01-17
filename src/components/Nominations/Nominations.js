@@ -2,7 +2,7 @@ import React from 'react'
 import Movie from '../Movie/Movie'
 import './Nominations.css'
 
-function Nominations({ nominations, title, removeFromNominations }) {
+function Nominations({ nominations, title, setNominations }) {
     let movies = ''
 
     if (nominations && nominations.length > 0) {
@@ -11,7 +11,7 @@ function Nominations({ nominations, title, removeFromNominations }) {
            key={index}
            movie={movie}
            nominations={nominations}
-           removeFromNominations={removeFromNominations}
+           setNominations={setNominations}
            button={'Remove'}
            /> 
         )

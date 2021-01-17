@@ -10,22 +10,6 @@ function App() {
   const [nominations, setNominations] = useState([])
   const [text, setText] = useState('')
   
-  console.log(nominations)
-  console.log(results)
-
-  const addToNominations = (movie) => {
-    if (nominations.length < 5) {
-      setNominations(nominations.concat(movie))
-  }
-}
-
-  const removeFromNominations = (movieId) => {
-    let newArray = nominations.filter(nomination => nomination.imdbID !== movieId)
-    setNominations(newArray)
-  }
-
-  console.log(nominations)
-
   return (
     <Fragment>
       <header>
@@ -42,9 +26,9 @@ function App() {
           title={`Results for '${text}'`}
           results={results}
           nominations={nominations}
-          addToNominations={addToNominations}
+          setNominations={setNominations}
           />
-        <Nominations title={'Nominations'} nominations={nominations} removeFromNominations={removeFromNominations} />
+        <Nominations title={'Nominations'} nominations={nominations} setNominations={setNominations} />
       </section> 
     </Fragment>
   );

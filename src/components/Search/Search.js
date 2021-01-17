@@ -16,7 +16,7 @@ function Search({ getResults, text, setText }) {
     const fetchSearchResults = (text) => {
     return axios({
         method: 'GET',
-        url: `http://www.omdbapi.com/?apikey=${API_KEY}&s=${text}&r=json&type=movie`
+        url: `https://www.omdbapi.com/?apikey=${API_KEY}&s=${text}&r=json&type=movie`
         })
       }
 

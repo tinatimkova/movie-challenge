@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react';
 import './App.css';
 import Search from './components/Search/Search';
 import SearchResults from './components/SearchResults/SearchResults';
-import Nominations from './components/Nominations/Nominations';
 
 function App() {
 
@@ -27,8 +26,13 @@ function App() {
           results={results}
           nominations={nominations}
           setNominations={setNominations}
+          button={'Nominate'}
           />
-        <Nominations title={'Nominations'} nominations={nominations} setNominations={setNominations} />
+        <SearchResults title={'Nominations'}
+          results={nominations}
+          nominations={nominations}
+          setNominations={setNominations}
+          button={'Remove'} />
       </section> 
     </Fragment>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import Movie from '../Movie/Movie';
 import './SearchResults.css'
 
-export default function SearchResults({ title, results, nominations, setNominations }) {
+export default function SearchResults({ title, results, nominations, setNominations, button }) {
 
     let movies = ''
 
@@ -14,7 +14,7 @@ export default function SearchResults({ title, results, nominations, setNominati
            results={results}
            nominations={nominations}
            setNominations={setNominations}
-           button={'Nominate'}
+           button={button}
            /> 
         )
     } 

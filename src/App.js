@@ -17,7 +17,8 @@ function App() {
         <Search
           getResults={setResults}
           text={text}
-          setText={setText}/>
+          setText={setText}
+          />
       </div>
       </header>
       <section>

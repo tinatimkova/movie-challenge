@@ -1,6 +1,6 @@
 import React from 'react';
 import Movie from '../Movie/Movie';
-import './SearchResults.css'
+import './SearchResults.css';
 
 export default function SearchResults({ title, results, nominations, setNominations, button }) {
 
@@ -17,7 +17,7 @@ export default function SearchResults({ title, results, nominations, setNominati
            button={button}
            /> 
         )
-    } 
+    }
 
     return (
         <div className='results-card'>

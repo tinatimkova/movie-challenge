@@ -16,7 +16,8 @@ function Search({ getResults, text, setText }) {
         setText(e.target.value)
 
         fetchSearchResults(text)
-            .then(res => {res.data.Response === "True" && getResults(res.data.Search)})
+            .then(res => {res.data.Response === "True" ? getResults(res.data.Search) : getResults([])})
+            .catch(error => console.log(error))
     }
 
 

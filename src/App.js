@@ -6,24 +6,19 @@ import SearchResults from './components/SearchResults/SearchResults';
 
 function App() {
 
-  const [results, setResults] = useState(null)
   const [nominations, setNominations] = useState([])
-  // const [text, setText] = useState('')
 
   return (
     <MoviesState>
       <header>
       <h4>The Shoppies</h4>
       <div className="search">
-        <Search
-          getResults={setResults}
-          />
+        <Search />
       </div>
       </header>
       <section>
         <SearchResults 
-          title={`Results for`}
-          results={results}
+          title={'Movies'}
           nominations={nominations}
           setNominations={setNominations}
           button={'Nominate'}

@@ -15,6 +15,16 @@ const MoviesState = props => {
     const [ state, dispatch ] = useReducer(MoviesReducer, initialState)
 
     // Search Movies
+    const searchMovies = async text => {
+        setText(text)
+
+        const res = await axios({
+            method: 'GET',
+            url: `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${state.text}&r=json&type=movie`
+            })  
+          
+       {res.data.Response === "True" ? dispatch({ type: SEARCH_MOVIES, payload: res.data.Search}) : dispatch({ type: SEARCH_MOVIES, payload: [] })}
+    }
 
     // Input text
     const setText = (text) => dispatch({ type: SET_TEXT, payload: { text } })
@@ -24,7 +34,7 @@ const MoviesState = props => {
     // Remove a movie from the nomination list
 
     return (
-    <MoviesContext.Provider value={{ results: state.results, text: state.text, nominations: state.nominations, setText }}>
+    <MoviesContext.Provider value={{ results: state.results, text: state.text, nominations: state.nominations, setText, searchMovies }}>
         {props.children}
     </MoviesContext.Provider>
     )

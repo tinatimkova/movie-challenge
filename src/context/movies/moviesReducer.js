@@ -7,6 +7,11 @@ export default (state, action) => {
                 ...state, 
                 text: action.payload.text
             }
+        case SEARCH_MOVIES:
+            return {
+                ...state,
+                results: action.payload
+            }
         default:
             return state;
     }

@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import './Search.css'
 import axios from 'axios';
 
-function Search({ getResults, text, setText }) {
-    
-    const fetchSearchResults = (text) => {
-    return axios({
-        method: 'GET',
-        url: `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${text}&r=json&type=movie`
-        })
-      }
+import MoviesContext from '../../context/movies/moviesContext'
 
-    const handleChange = (e) => {
-        setText(e.target.value)
+function Search({ getResults }) {
+
+    const moviesContext = useContext(MoviesContext)
+
+    const { text } = moviesContext
+
+    const fetchSearchResults = () => {
+        return axios({
+            method: 'GET',
+            url: `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${text}&r=json&type=movie`
+            })
+          }
+
+    const searchMovies = (e) => {
+        moviesContext.setText(e.target.value)
 
         fetchSearchResults(text)
             .then(res => {res.data.Response === "True" ? getResults(res.data.Search) : getResults([])})
@@ -26,7 +32,7 @@ function Search({ getResults, text, setText }) {
          <h5>Movie title</h5>
          <div className='search-bar'>
              <SearchIcon className='search-icon'/>
-             <input className='search-field' type='text' autoFocus="autofocus" placeholder='Search Movies...' value={text} onChange={handleChange} />
+             <input className='search-field' type='text' autoFocus="autofocus" placeholder='Search Movies...' value={text} onChange={searchMovies} />
         </div>
         </>
     )

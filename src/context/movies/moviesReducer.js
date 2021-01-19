@@ -1,4 +1,4 @@
-import { SEARCH_MOVIES, SET_TEXT, REMOVE_NOMINATIONS, SET_NOMINATIONS } from '../types'
+import { SEARCH_MOVIES, SET_TEXT, REMOVE_NOMINATIONS, SET_NOMINATIONS, SET_LOADING } from '../types'
 
 export default (state, action) => {
     switch(action.type) {
@@ -7,10 +7,17 @@ export default (state, action) => {
                 ...state, 
                 text: action.payload.text
             }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload.value,
+                movies: []
+            }
         case SEARCH_MOVIES:
             return {
                 ...state,
-                movies: action.payload
+                movies: action.payload,
+                loading: false
             }
         case SET_NOMINATIONS:
             return {

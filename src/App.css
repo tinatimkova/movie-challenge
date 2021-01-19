@@ -23,8 +23,14 @@ header h4{
 
 .search{
   background: #ffe5d9;
-  margin: 1rem;
+  margin: 1rem auto;
   padding: 2rem;
-  width: 50vw;
+  width: 100%;
   border: 1px solid #fec89a;
+}
+
+
+header, section{
+  width: 50vw;
+  margin: auto;
 }

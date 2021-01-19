@@ -7,7 +7,7 @@ import { SEARCH_MOVIES, SET_TEXT, REMOVE_NOMINATIONS, SET_NOMINATIONS } from '..
 const MoviesState = props => {
     // global state
     const initialState = {
-        results: null,
+        movies: null,
         text: '',
         nominations: []
     }
@@ -30,11 +30,13 @@ const MoviesState = props => {
     const setText = (text) => dispatch({ type: SET_TEXT, payload: { text } })
 
     // Add a movie to the nomination list
+    const setNominations = (movie) => dispatch({ type: SET_NOMINATIONS, payload: { movie }})
 
     // Remove a movie from the nomination list
+    const removeNomination = (newArray) => dispatch({ type: REMOVE_NOMINATIONS, payload: {newArray}})
 
     return (
-    <MoviesContext.Provider value={{ results: state.results, text: state.text, nominations: state.nominations, setText, searchMovies }}>
+    <MoviesContext.Provider value={{ movies: state.movies, text: state.text, nominations: state.nominations, setText, searchMovies, setNominations, removeNomination }}>
         {props.children}
     </MoviesContext.Provider>
     )

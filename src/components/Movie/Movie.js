@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Movie.css'
+import MoviesContext from '../../context/movies/moviesContext'
 
-export default function Movie({ movie, button, setNominations, nominations }) {
+export default function Movie({ movie, button }) {
+
+    const moviesContext = useContext(MoviesContext)
+
+    const { nominations, setNominations, removeNomination } = moviesContext
 
     const handleClick = () => {
         if (button==='Remove') {
             let newArray = nominations.filter(nomination => nomination.imdbID !== movie.imdbID)
-            return setNominations(newArray)
+            return removeNomination(newArray)
         } else if (button==='Nominate' && nominations.length < 5) {
-            return setNominations(nominations.concat(movie))
+            return setNominations(movie)
         }
     }
 

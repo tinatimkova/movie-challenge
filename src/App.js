@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import MoviesState from './context/movies/MoviesState'
 import './App.css';
 import Search from './components/Search/Search';
 import SearchResults from './components/SearchResults/SearchResults';
 
 function App() {
-
-  const [nominations, setNominations] = useState([])
 
   return (
     <MoviesState>
@@ -19,14 +16,10 @@ function App() {
       <section>
         <SearchResults 
           title={'Movies'}
-          nominations={nominations}
-          setNominations={setNominations}
           button={'Nominate'}
           />
-        <SearchResults title={'Nominations'}
-          results={nominations}
-          nominations={nominations}
-          setNominations={setNominations}
+        <SearchResults
+          title={'Nominations'}
           button={'Remove'} />
       </section> 
     </MoviesState>

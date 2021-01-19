@@ -10,7 +10,17 @@ export default (state, action) => {
         case SEARCH_MOVIES:
             return {
                 ...state,
-                results: action.payload
+                movies: action.payload
+            }
+        case SET_NOMINATIONS:
+            return {
+                ...state,
+                nominations: state.nominations.concat(action.payload.movie)
+            }
+        case REMOVE_NOMINATIONS:
+            return {
+                ...state,
+                nominations: action.payload.newArray
             }
         default:
             return state;

@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import './Search.css'
-import axios from 'axios';
 
 import MoviesContext from '../../context/movies/moviesContext'
 
-function Search({ getResults }) {
+function Search() {
 
     const moviesContext = useContext(MoviesContext)
 

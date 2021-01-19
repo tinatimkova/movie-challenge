@@ -3,21 +3,21 @@ import Movie from '../Movie/Movie';
 import './SearchResults.css';
 import MoviesContext from '../../context/movies/moviesContext';
 
-export default function SearchResults({ title, nominations, setNominations, button }) {
+export default function SearchResults({ title, button }) {
 
     const moviesContext = useContext(MoviesContext)
 
-    let movies = ''
-    let results = ''
-    {button==='Remove' ? results=nominations : results=moviesContext.results}
+    const { movies, nominations } = moviesContext
 
-    if (results && results.length > 0) {
-        movies = results.map((movie, index) =>
+    let list = ''
+    let items = ''
+    {button==='Remove' ? items=nominations : items=movies}
+
+    if (items && items.length > 0) {
+        list = items.map((movie, index) =>
            <Movie
            key={index}
            movie={movie}
-           nominations={nominations}
-           setNominations={setNominations}
            button={button}
            /> 
         )
@@ -26,7 +26,7 @@ export default function SearchResults({ title, nominations, setNominations, butt
     return (
         <div className='results-card'>
             <h6>{title}</h6>
-            <ul>{movies}</ul>
+            <ul>{list}</ul>
         </div>
     )
 }
